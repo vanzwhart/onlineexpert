@@ -1,6 +1,7 @@
 ﻿<!-- ============================================================== -->
 <!-- Topbar header - style you can find in pages.scss -->
 <!-- ============================================================== -->
+@using Microsoft.AspNet.Identity
 
 <header class="topbar">
     <nav class="navbar top-navbar navbar-expand-md navbar-light">
@@ -40,33 +41,44 @@
             <!-- ============================================================== -->
             <!-- User profile and search -->
             <!-- ============================================================== -->
-            <ul class="navbar-nav my-lg-0">
-                
-                <!-- Profile -->
-                <!-- ============================================================== -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
-                    <div class="dropdown-menu dropdown-menu-right animated flipInY">
-                        <ul class="dropdown-user">
-                            <li>
-                                <div class="dw-user-box">
-                                    <div class="u-img"><img src="../assets/images/users/1.jpg" alt="user"></div>
-                                    <div class="u-text">
-                                        <h4>Steave Jobs</h4>
-                                        <p class="text-muted">varun@gmail.com</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
+
+            <a>Hi, @User.Identity.Name</a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <ul class="navbar-nav my-lg-0">
+
+                        <!-- Profile -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
+                            <div class="dropdown-menu dropdown-menu-right animated flipInY">
+                                <ul class="dropdown-user">
+                                    <li>
+                                        <div class="dw-user-box">
+                                            <div class="u-img"><img src="../assets/images/users/1.jpg" alt="user"></div>
+                                            <div class="u-text">
+                                                <h4>@User.Identity.Name</h4>
+                                                @*<p class="text-muted">varun@gmail.com</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a>*@
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="/Manage/Index"><i class="ti-settings"></i> Account Setting</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                }
+            }
+
         </div>
     </nav>
 </header>

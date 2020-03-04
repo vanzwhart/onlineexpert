@@ -52,6 +52,7 @@ namespace ReportingOnline.Controllers
 
         //
         // GET: /Manage/Index
+        [Route("/Manage/Index")]
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
