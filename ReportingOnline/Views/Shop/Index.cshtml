@@ -1,0 +1,170 @@
+﻿@model ReportingOnline.Models.OnlineReportingEntities
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Login V1</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/Content/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/shopcss/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/shopcss/main.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/plugins/dropify/dist/css/dropify.min.css">
+    <!--===============================================================================================-->
+</head>
+
+<body>
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-pic js-tilt" data-tilt>
+                    <img src="~/Content/images/img-01.png" alt="IMG">
+                </div>
+             @if(Model.MsOnlineShops.Count() > 0)
+             {
+                foreach(var shops in Model.MsOnlineShops)
+                {
+                    <div class="card">
+                        @Html.DisplayFor(model => model.MsOnlineShops.FirstOrDefault(u => u.ID == shops.ID))
+                    </div>
+                }
+             }
+                <form class="login100-form validate-form">
+                    <span class="login100-form-title">
+                        Add Shop
+                    </span>
+
+                    <div class="wrap-input100 validate-input" data-validate="Shop Name Required">
+                        @Html.TextBoxFor(m => m.MsOnlineShops.FirstOrDefault().OnlineShopName, new { @placeholder = "Shop Name", @class = "input100" })
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Phone Number is required">
+                        @Html.TextBoxFor(m => m.MsOnlineShops.FirstOrDefault().PhoneNumber, new { @placeholder = "Shop Name", @class = "input100" })
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input">
+                        <div class="col-lg-12">
+                            <div class="card">
+
+                                <h4 class="card-title">Logo</h4>
+                                <input type="file" id="input-file-now" class="dropify" style="border-radius: 50%" />
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn">
+                            Add Shop
+                        </button>
+                    </div>
+
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+   
+ 
+
+
+    <!--===============================================================================================-->
+    <script src="~/Scripts/shopvendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Scripts/shopvendor/bootstrap/js/popper.js"></script>
+    <script src="~/Scripts/shopvendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Scripts/shopvendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Scripts/shopvendor/tilt/tilt.jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Basic
+            $('.dropify').dropify();
+
+            // Translated
+            $('.dropify-fr').dropify({
+                messages: {
+                    default: 'Glissez-déposez un fichier ici ou cliquez',
+                    replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                    remove: 'Supprimer',
+                    error: 'Désolé, le fichier trop volumineux'
+                }
+            });
+
+            // Used events
+            var drEvent = $('#input-file-events').dropify();
+
+            drEvent.on('dropify.beforeClear', function (event, element) {
+                return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+            });
+
+            drEvent.on('dropify.afterClear', function (event, element) {
+                alert('File deleted');
+            });
+
+            drEvent.on('dropify.errors', function (event, element) {
+                console.log('Has Errors');
+            });
+
+            var drDestroy = $('#input-file-to-destroy').dropify();
+            drDestroy = drDestroy.data('dropify')
+            $('#toggleDropify').on('click', function (e) {
+                e.preventDefault();
+                if (drDestroy.isDropified()) {
+                    drDestroy.destroy();
+                } else {
+                    drDestroy.init();
+                }
+            })
+        });
+
+        $('.js-tilt').tilt({
+            scale: 1.1
+        })
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/Scripts/shopjs/main.js"></script>
+
+
+
+    <script src="~/assets/plugins/dropify/dist/js/dropify.min.js"></script>
+
+    <!-- ============================================================== -->
+    <!-- Style switcher -->
+    <!-- ============================================================== -->
+    <script src="~/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+
+</body>
+</>
+</html>
+
+
+

@@ -49,6 +49,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -169,7 +171,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LandingController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -179,8 +183,41 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>ReportingOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>ReportingOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>ReportingOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>ReportingOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>ReportingOnline.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MsOnlineShop.cs">
+      <DependentUpon>ReportingOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReportingOnline.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportingOnline.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReportingOnline.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportingOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReportingOnline.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportingOnline.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -484,6 +521,18 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\csslanding\aos.css" />
+    <Content Include="Content\csslanding\bootstrap-datepicker.css" />
+    <Content Include="Content\csslanding\bootstrap.min.css" />
+    <Content Include="Content\csslanding\bootstrap\bootstrap-grid.css" />
+    <Content Include="Content\csslanding\bootstrap\bootstrap-reboot.css" />
+    <Content Include="Content\csslanding\jquery-ui.css" />
+    <Content Include="Content\csslanding\jquery.fancybox.min.css" />
+    <Content Include="Content\csslanding\magnific-popup.css" />
+    <Content Include="Content\csslanding\mediaelementplayer.css" />
+    <Content Include="Content\csslanding\owl.carousel.min.css" />
+    <Content Include="Content\csslanding\owl.theme.default.min.css" />
+    <Content Include="Content\csslanding\style.css" />
     <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\colors\default-dark.css" />
     <Content Include="Content\css\colors\default.css" />
@@ -795,6 +844,23 @@
     <Content Include="Content\css\pages\widget-page.css" />
     <Content Include="Content\css\spinners.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\fonts\flaticon\backup.txt" />
+    <Content Include="Content\fonts\flaticon\font\flaticon.css" />
+    <Content Include="Content\fonts\flaticon\font\flaticon.html" />
+    <Content Include="Content\fonts\flaticon\font\Flaticon.svg" />
+    <Content Include="Content\fonts\flaticon\font\_flaticon.css" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="Content\fonts\icomoon\demo-files\demo.css" />
+    <Content Include="Content\fonts\icomoon\demo-files\demo.js" />
+    <Content Include="Content\fonts\icomoon\demo.html" />
+    <Content Include="Content\fonts\icomoon\fonts\icomoon.svg" />
+    <Content Include="Content\fonts\icomoon\Read Me.txt" />
+    <Content Include="Content\fonts\icomoon\style.css" />
+    <Content Include="Content\fonts\montserrat\OFL.txt" />
+    <Content Include="Content\images\about_1.jpg" />
     <Content Include="Content\images\alert\alert.png" />
     <Content Include="Content\images\alert\alert2.png" />
     <Content Include="Content\images\alert\alert3.png" />
@@ -824,21 +890,37 @@
     <Content Include="Content\images\browser\safari-logo.png" />
     <Content Include="Content\images\browser\sketch.jpg" />
     <Content Include="Content\images\custom-select.png" />
+    <Content Include="Content\images\do-ui-kit-1-6-overview.jpg" />
+    <Content Include="Content\images\do_ui_kit_download_cta_floating_devices-2x.png" />
+    <Content Include="Content\images\do_ui_kit_hero_floating_devices-2x.png" />
     <Content Include="Content\images\favicon.png" />
+    <Content Include="Content\images\hero_1.jpg" />
     <Content Include="Content\images\icon\assets-w.png" />
     <Content Include="Content\images\icon\assets.png" />
     <Content Include="Content\images\icon\expense-w.png" />
     <Content Include="Content\images\icon\expense.png" />
+    <Content Include="Content\images\icon\favicon.ico" />
     <Content Include="Content\images\icon\income-w.png" />
     <Content Include="Content\images\icon\income.png" />
     <Content Include="Content\images\icon\staff-w.png" />
     <Content Include="Content\images\icon\staff.png" />
     <Content Include="Content\images\icon\zip.png" />
+    <Content Include="Content\images\img-01.png" />
+    <Content Include="Content\images\img_1.jpg" />
+    <Content Include="Content\images\img_2.jpg" />
+    <Content Include="Content\images\img_3.jpg" />
+    <Content Include="Content\images\landing_1.png" />
     <Content Include="Content\images\logo-icon.png" />
     <Content Include="Content\images\logo-light-icon.png" />
     <Content Include="Content\images\logo-light-text.png" />
     <Content Include="Content\images\logo-text.png" />
+    <Content Include="Content\images\svg_1.svg" />
     <Content Include="Content\images\tooltip\Euclid.png" />
+    <Content Include="Content\images\undraw_bookmarks_r6up.svg" />
+    <Content Include="Content\images\undraw_gift_card_6ekc.svg" />
+    <Content Include="Content\images\undraw_investing_7u74.svg" />
+    <Content Include="Content\images\undraw_metrics_gtu7.svg" />
+    <Content Include="Content\images\undraw_multitasking_hqg3.svg" />
     <Content Include="Content\images\users\1.jpg" />
     <Content Include="Content\images\users\2.jpg" />
     <Content Include="Content\images\users\3.jpg" />
@@ -848,10 +930,33 @@
     <Content Include="Content\images\users\7.jpg" />
     <Content Include="Content\images\users\8.jpg" />
     <Content Include="Content\images\users\profile.png" />
+    <Content Include="Content\shopcss\main.css" />
+    <Content Include="Content\shopcss\util.css" />
+    <Content Include="Content\vendor\animate\animate.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\vendor\css-hamburgers\hamburgers.css" />
+    <Content Include="Content\vendor\css-hamburgers\hamburgers.min.css" />
+    <Content Include="Content\vendor\select2\select2.css" />
+    <Content Include="Content\vendor\select2\select2.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\ReportingOnline.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ReportingOnline.edmx</DependentUpon>
+      <LastGenOutput>ReportingOnline.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ReportingOnline.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ReportingOnline.edmx</DependentUpon>
+      <LastGenOutput>ReportingOnline.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\css\icons\font-awesome\webfonts\fa-brands-400.eot" />
@@ -916,6 +1021,102 @@
     <Content Include="assets\plugins\summernote\dist\font\summernotec360.eot" />
     <Content Include="assets\plugins\summernote\dist\font\summernotec360.ttf" />
     <Content Include="assets\plugins\summernote\dist\font\summernotec360.woff" />
+    <Content Include="Content\images\.DS_Store" />
+    <Content Include="Content\csslanding\.DS_Store" />
+    <Content Include="Content\csslanding\bootstrap.min.css.map" />
+    <Content Include="Content\fonts\.DS_Store" />
+    <Content Include="Content\fonts\flaticon\font\Flaticon.eot" />
+    <Content Include="Content\fonts\flaticon\font\Flaticon.ttf" />
+    <Content Include="Content\fonts\flaticon\font\Flaticon.woff" />
+    <Content Include="Content\fonts\flaticon\font\Flaticon.woff2" />
+    <Content Include="Content\fonts\flaticon\font\_flaticon.scss" />
+    <Content Include="Content\fonts\flaticon\license\license.pdf" />
+    <Content Include="Content\fonts\icomoon\fonts\icomoon.eot" />
+    <Content Include="Content\fonts\icomoon\fonts\icomoon.ttf" />
+    <Content Include="Content\fonts\icomoon\fonts\icomoon.woff" />
+    <Content Include="Content\fonts\icomoon\selection.json" />
+    <EntityDeploy Include="Models\ReportingOnline.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ReportingOnline.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ReportingOnline.edmx.diagram">
+      <DependentUpon>ReportingOnline.edmx</DependentUpon>
+    </Content>
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\less\animated.less" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\less\core.less" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\less\fixed-width.less" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\less\font-awesome.less" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\less\icons.less" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\less\larger.less" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\less\list.less" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\less\mixins.less" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\less\path.less" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\less\screen-reader.less" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\less\stacked.less" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\less\variables.less" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\scss\_animated.scss" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\scss\_core.scss" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\scss\_icons.scss" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\scss\_larger.scss" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\scss\_list.scss" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\scss\_mixins.scss" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\scss\_path.scss" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\scss\_stacked.scss" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\scss\_variables.scss" />
+    <Content Include="Content\fonts\montserrat\Montserrat-Black.ttf" />
+    <Content Include="Content\fonts\montserrat\Montserrat-BlackItalic.ttf" />
+    <Content Include="Content\fonts\montserrat\Montserrat-Bold.ttf" />
+    <Content Include="Content\fonts\montserrat\Montserrat-BoldItalic.ttf" />
+    <Content Include="Content\fonts\montserrat\Montserrat-ExtraBold.ttf" />
+    <Content Include="Content\fonts\montserrat\Montserrat-ExtraBoldItalic.ttf" />
+    <Content Include="Content\fonts\montserrat\Montserrat-ExtraLight.ttf" />
+    <Content Include="Content\fonts\montserrat\Montserrat-ExtraLightItalic.ttf" />
+    <Content Include="Content\fonts\montserrat\Montserrat-Italic.ttf" />
+    <Content Include="Content\fonts\montserrat\Montserrat-Light.ttf" />
+    <Content Include="Content\fonts\montserrat\Montserrat-LightItalic.ttf" />
+    <Content Include="Content\fonts\montserrat\Montserrat-Medium.ttf" />
+    <Content Include="Content\fonts\montserrat\Montserrat-MediumItalic.ttf" />
+    <Content Include="Content\fonts\montserrat\Montserrat-Regular.ttf" />
+    <Content Include="Content\fonts\montserrat\Montserrat-SemiBold.ttf" />
+    <Content Include="Content\fonts\montserrat\Montserrat-SemiBoldItalic.ttf" />
+    <Content Include="Content\fonts\montserrat\Montserrat-Thin.ttf" />
+    <Content Include="Content\fonts\montserrat\Montserrat-ThinItalic.ttf" />
+    <Content Include="Content\fonts\poppins\Poppins-Black.ttf" />
+    <Content Include="Content\fonts\poppins\Poppins-BlackItalic.ttf" />
+    <Content Include="Content\fonts\poppins\Poppins-Bold.ttf" />
+    <Content Include="Content\fonts\poppins\Poppins-BoldItalic.ttf" />
+    <Content Include="Content\fonts\poppins\Poppins-ExtraBold.ttf" />
+    <Content Include="Content\fonts\poppins\Poppins-ExtraBoldItalic.ttf" />
+    <Content Include="Content\fonts\poppins\Poppins-ExtraLight.ttf" />
+    <Content Include="Content\fonts\poppins\Poppins-ExtraLightItalic.ttf" />
+    <Content Include="Content\fonts\poppins\Poppins-Italic.ttf" />
+    <Content Include="Content\fonts\poppins\Poppins-Light.ttf" />
+    <Content Include="Content\fonts\poppins\Poppins-LightItalic.ttf" />
+    <Content Include="Content\fonts\poppins\Poppins-Medium.ttf" />
+    <Content Include="Content\fonts\poppins\Poppins-MediumItalic.ttf" />
+    <Content Include="Content\fonts\poppins\Poppins-Regular.ttf" />
+    <Content Include="Content\fonts\poppins\Poppins-SemiBold.ttf" />
+    <Content Include="Content\fonts\poppins\Poppins-SemiBoldItalic.ttf" />
+    <Content Include="Content\fonts\poppins\Poppins-Thin.ttf" />
+    <Content Include="Content\fonts\poppins\Poppins-ThinItalic.ttf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\javascripts\bootstrap-table.init.js" />
     <Content Include="Scripts\javascripts\chat.js" />
@@ -947,6 +1148,24 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jslanding\aos.js" />
+    <Content Include="Scripts\jslanding\bootstrap-datepicker.min.js" />
+    <Content Include="Scripts\jslanding\bootstrap.min.js" />
+    <Content Include="Scripts\jslanding\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jslanding\jquery-migrate-3.0.1.min.js" />
+    <Content Include="Scripts\jslanding\jquery-ui.js" />
+    <Content Include="Scripts\jslanding\jquery.countdown.min.js" />
+    <Content Include="Scripts\jslanding\jquery.easing.1.3.js" />
+    <Content Include="Scripts\jslanding\jquery.fancybox.min.js" />
+    <Content Include="Scripts\jslanding\jquery.magnific-popup.min.js" />
+    <Content Include="Scripts\jslanding\jquery.stellar.min.js" />
+    <Content Include="Scripts\jslanding\jquery.sticky.js" />
+    <Content Include="Scripts\jslanding\main.js" />
+    <Content Include="Scripts\jslanding\mediaelement-and-player.min.js" />
+    <Content Include="Scripts\jslanding\owl.carousel.min.js" />
+    <Content Include="Scripts\jslanding\popper.min.js" />
+    <Content Include="Scripts\jslanding\slick.min.js" />
+    <Content Include="Scripts\jslanding\typed.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\plugins\bootstrap-datepicker\bootstrap-datepicker.min.css" />
     <Content Include="Scripts\plugins\bootstrap-datepicker\bootstrap-datepicker.min.js" />
@@ -1190,6 +1409,16 @@
     <Content Include="Scripts\plugins\x-editable\dist\bootstrap3-editable\img\clear.png" />
     <Content Include="Scripts\plugins\x-editable\dist\bootstrap3-editable\img\loading.gif" />
     <Content Include="Scripts\plugins\x-editable\dist\bootstrap3-editable\js\bootstrap-editable.js" />
+    <Content Include="Scripts\shopjs\main.js" />
+    <Content Include="Scripts\shopvendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Scripts\shopvendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Scripts\shopvendor\bootstrap\js\popper.js" />
+    <Content Include="Scripts\shopvendor\bootstrap\js\popper.min.js" />
+    <Content Include="Scripts\shopvendor\bootstrap\js\tooltip.js" />
+    <Content Include="Scripts\shopvendor\jquery\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\shopvendor\select2\select2.js" />
+    <Content Include="Scripts\shopvendor\select2\select2.min.js" />
+    <Content Include="Scripts\shopvendor\tilt\tilt.jquery.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1228,6 +1457,9 @@
     <Content Include="Scripts\plugins\summernote\dist\font\summernotec360.ttf" />
     <Content Include="Scripts\plugins\summernote\dist\font\summernotec360.woff" />
     <Content Include="Views\Shared\_navBar.cshtml" />
+    <Content Include="Views\Landing\Index.cshtml" />
+    <Content Include="Views\Home\AddShop.cshtml" />
+    <Content Include="Views\Shop\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1249,6 +1481,9 @@
     <EmbeddedResource Include="Migrations\202002280957595_First.resx">
       <DependentUpon>202002280957595_First.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
